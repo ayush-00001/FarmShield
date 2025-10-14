@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+/* FarmShield Design System - Agricultural theme with data visualization focus */
+/* Tailwind CSS v4 Compatible Version */
+
+@layer theme {
+  :root {
+    /* Core Colors - Agricultural Green Palette */
+    --color-background: 120 20% 98%;
+    --color-foreground: 120 30% 15%;
+
+    --color-card: 0 0% 100%;
+    --color-card-foreground: 120 25% 20%;
+
+    --color-popover: 0 0% 100%;
+    --color-popover-foreground: 120 25% 20%;
+
+    /* Primary - Farm Green */
+    --color-primary: 120 60% 35%;
+    --color-primary-foreground: 0 0% 100%;
+
+    /* Secondary - Earth Tone */
+    --color-secondary: 35 30% 85%;
+    --color-secondary-foreground: 120 40% 25%;
+
+    /* Muted - Soft Background */
+    --color-muted: 120 15% 95%;
+    --color-muted-foreground: 120 20% 50%;
+
+    /* Accent - Agricultural Blue */
+    --color-accent: 200 80% 50%;
+    --color-accent-foreground: 0 0% 100%;
+
+    /* Status Colors */
+    --color-destructive: 0 75% 55%;
+    --color-destructive-foreground: 0 0% 100%;
+    --color-success: 120 70% 40%;
+    --color-success-foreground: 0 0% 100%;
+    --color-warning: 45 90% 55%;
+    --color-warning-foreground: 0 0% 100%;
+
+    --color-border: 120 20% 88%;
+    --color-input: 120 20% 95%;
+    --color-ring: 120 60% 35%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --color-farm-green: 120 60% 35%;
+    --color-earth-brown: 35 40% 60%;
+    --color-sky-blue: 200 80% 50%;
+    --color-harvest-gold: 45 90% 55%;
+    --color-primary-glow: 120 70% 45%;
+    
+    /* Sidebar Colors */
+    --color-sidebar-background: 0 0% 98%;
+    --color-sidebar-foreground: 240 5.3% 26.1%;
+    --color-sidebar-primary: 240 5.9% 10%;
+    --color-sidebar-primary-foreground: 0 0% 98%;
+    --color-sidebar-accent: 240 4.8% 95.9%;
+    --color-sidebar-accent-foreground: 240 5.9% 10%;
+    --color-sidebar-border: 220 13% 91%;
+    --color-sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Mode - Agricultural Night Theme */
+    --color-background: 120 30% 8%;
+    --color-foreground: 120 15% 90%;
+
+    --color-card: 120 25% 12%;
+    --color-card-foreground: 120 15% 90%;
+
+    --color-popover: 120 25% 12%;
+    --color-popover-foreground: 120 15% 90%;
+
+    --color-primary: 120 70% 45%;
+    --color-primary-foreground: 120 30% 8%;
+
+    --color-secondary: 120 20% 20%;
+    --color-secondary-foreground: 120 15% 85%;
+
+    --color-muted: 120 20% 15%;
+    --color-muted-foreground: 120 15% 60%;
+
+    --color-accent: 200 80% 60%;
+    --color-accent-foreground: 120 30% 8%;
+
+    --color-destructive: 0 80% 65%;
+    --color-destructive-foreground: 120 30% 8%;
+    --color-success: 120 70% 50%;
+    --color-success-foreground: 120 30% 8%;
+    --color-warning: 45 90% 65%;
+    --color-warning-foreground: 120 30% 8%;
+
+    --color-border: 120 20% 25%;
+    --color-input: 120 20% 18%;
+    --color-ring: 120 70% 45%;
+
+    --color-sidebar-background: 240 5.9% 10%;
+    --color-sidebar-foreground: 240 4.8% 95.9%;
+    --color-sidebar-primary: 224.3 76.3% 48%;
+    --color-sidebar-primary-foreground: 0 0% 100%;
+    --color-sidebar-accent: 240 3.7% 15.9%;
+    --color-sidebar-accent-foreground: 240 4.8% 95.9%;
+    --color-sidebar-border: 240 3.7% 15.9%;
+    --color-sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer utilities {
+  /* Base styles */
+  * {
+    border-color: hsl(var(--color-border));
+  }
+
+  body {
+    background-color: hsl(var(--color-background));
+    color: hsl(var(--color-foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  
+  /* Custom gradient utilities */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--color-primary)), hsl(var(--color-primary-glow)));
+  }
+  
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--color-primary)), hsl(var(--color-accent)));
+  }
+  
+  .gradient-card {
+    background: linear-gradient(145deg, hsl(0 0% 100%), hsl(120 15% 97%));
+  }
+  
+  .gradient-success {
+    background: linear-gradient(135deg, hsl(var(--color-success)), hsl(120 80% 50%));
+  }
+  
+  /* Custom shadow utilities */
+  .shadow-soft {
+    box-shadow: 0 4px 12px hsl(120 30% 15% / 0.08);
+  }
+  
+  .shadow-medium {
+    box-shadow: 0 8px 25px hsl(120 30% 15% / 0.12);
+  }
+  
+  .shadow-strong {
+    box-shadow: 0 15px 35px hsl(120 30% 15% / 0.15);
+  }
+  
+  /* Custom transition utilities */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .transition-bounce {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  /* Component utilities */
+  .chart-container {
+    border-radius: 0.5rem;
+    background-color: hsl(var(--color-card));
+    border-width: 1px;
+    box-shadow: 0 4px 12px hsl(120 30% 15% / 0.08);
+    padding: 1rem;
+  }
+  
+  .metric-card {
+    background: linear-gradient(145deg, hsl(0 0% 100%), hsl(120 15% 97%));
+    border-radius: 0.5rem;
+    border-width: 1px;
+    box-shadow: 0 4px 12px hsl(120 30% 15% / 0.08);
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .metric-card:hover {
+    box-shadow: 0 8px 25px hsl(120 30% 15% / 0.12);
+  }
+  
+  /* Risk level utilities */
+  .risk-low {
+    background-color: rgb(220 252 231);
+    color: rgb(22 101 52);
+  }
+  
+  .dark .risk-low {
+    background-color: rgb(20 83 45 / 0.2);
+    color: rgb(74 222 128);
+  }
+  
+  .risk-medium {
+    background-color: rgb(254 249 195);
+    color: rgb(133 77 14);
+  }
+  
+  .dark .risk-medium {
+    background-color: rgb(161 98 7 / 0.2);
+    color: rgb(250 204 21);
+  }
+  
+  .risk-high {
+    background-color: rgb(254 226 226);
+    color: rgb(153 27 27);
+  }
+  
+  .dark .risk-high {
+    background-color: rgb(185 28 28 / 0.2);
+    color: rgb(248 113 113);
+  }
+  
+  /* Interactive link utility */
+  .story-link {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .story-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--color-primary));
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Color utilities using CSS variables */
+  .bg-primary {
+    background-color: hsl(var(--color-primary));
+  }
+  
+  .text-primary {
+    color: hsl(var(--color-primary));
+  }
+  
+  .bg-primary-foreground {
+    background-color: hsl(var(--color-primary-foreground));
+  }
+  
+  .text-primary-foreground {
+    color: hsl(var(--color-primary-foreground));
+  }
+  
+  .bg-card {
+    background-color: hsl(var(--color-card));
+  }
+  
+  .text-card-foreground {
+    color: hsl(var(--color-card-foreground));
+  }
+  
+  .bg-accent {  
+    background-color: hsl(var(--color-accent));
+  }
+  
+  .text-accent-foreground {
+    color: hsl(var(--color-accent-foreground));
+  }
+  
+  .bg-muted {
+    background-color: hsl(var(--color-muted));
+  }
+  
+  .text-muted-foreground {
+    color: hsl(var(--color-muted-foreground));
+  }
+  
+  .border-border {
+    border-color: hsl(var(--color-border));
+  }
+}

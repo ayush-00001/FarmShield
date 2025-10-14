@@ -1,0 +1,125 @@
+// This is your Prisma schema file
+// It maps directly to your Supabase Postgres database
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(uuid())
+  email          String          @unique
+  fullName       String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  // Relations
+  farmRecords    FarmRecord[]
+  riskAssessments RiskAssessment[]
+  activities     Activity[]
+  alertReads     AlertRead[]
+}
+
+model FarmRecord {
+  id           String   @id @default(uuid())
+  userId       String
+  animalType   String   @map("animal_type")
+  quantity     Int
+  fodder       Float
+  deaths       Int
+  symptoms     String
+  vaccinations String
+  date         DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relation to User
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("farm_records")
+  @@index([userId])
+  @@index([date])
+}
+
+model RiskAssessment {
+  id            String   @id @default(uuid())
+  userId        String
+  score         Float
+  maxScore      Float
+  riskLevel     String   @map("risk_level") // "low", "medium", "high"
+  riskPercentage Float   @map("risk_percentage")
+  answers       Json     // Store question answers as JSON
+  recommendations Json?  // Store recommendations as JSON
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relation to User
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("risk_assessments")
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Activity {
+  id          String   @id @default(uuid())
+  userId      String
+  type        String   // e.g. "cleaning", "vaccination", "feed_check", "maintenance"
+  title       String
+  description String?
+  status      String   @default("completed") // "completed", "pending", "in_progress"
+  date        DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relation to User
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("activities")
+  @@index([userId])
+  @@index([date])
+  @@index([status])
+}
+
+model Alert {
+  id              String    @id @default(uuid())
+  title           String
+  description     String
+  severity        String    // "low", "medium", "high", "critical"
+  location        String
+  date            DateTime
+  source          String
+  affectedSpecies String[]  @map("affected_species") @default([])
+  recommendations String[]  @default([])
+  isActive        Boolean   @default(true) @map("is_active")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Relation to Users who read the alert
+  reads AlertRead[]
+
+  @@map("alerts")
+  @@index([severity])
+  @@index([date])
+  @@index([isActive])
+}
+
+model AlertRead {
+  id        String   @id @default(uuid())
+  userId    String
+  alertId   String
+  readAt    DateTime @default(now())
+
+  // Relations
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  alert Alert @relation(fields: [alertId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, alertId])
+  @@map("alert_reads")
+  @@index([userId])
+  @@index([alertId])
+}
