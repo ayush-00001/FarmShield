@@ -174,13 +174,7 @@ Other options: Netlify, AWS Amplify, Railway.
 1. Fork the repo
 2. Create a branch: `git checkout -b feature/your-feature`
 3. Commit: `git commit -m 'feat: add your feature'`
-4. Push and open a Pull Request
-
----
-
-## License
-
-MIT — see [LICENSE](./LICENSE) for details.
+4. Push and open a Pull Request.
 
 ---
 
