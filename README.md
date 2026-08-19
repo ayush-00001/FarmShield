@@ -1,4 +1,4 @@
-# 🛡️ Vajra-Farm — Biosecurity Intelligence for Modern Livestock Farms
+## 🛡️ Vajra-Farm — Biosecurity Intelligence for Modern Livestock Farms
 
 > Protecting pig and poultry farms through intelligent risk assessment, real-time disease alerts, and digital compliance tracking.
 
