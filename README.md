@@ -178,4 +178,6 @@ Other options: Netlify, AWS Amplify, Railway.
 
 ---
 
+
+
 *Vajra-Farm — because biosecurity shouldn't be an afterthought.* 🌱🛡️
